@@ -1,0 +1,69 @@
+<div class="header">
+  <h1 class="title">Article management</h1>
+  <button mat-mini-fab routerLink="/admin/articles/add">
+    <mat-icon fontIcon="add">add</mat-icon>
+  </button>
+</div>
+
+<div class="example-header">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+</div>
+
+<div class="example-container mat-elevation-z8">
+
+  <mat-table [dataSource]="dataSource" matSort >
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+    </ng-container>
+
+    <!-- Progress Column -->
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Title </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.title}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="url">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Short Description </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.shortDescription}} </mat-cell>
+    </ng-container>
+
+    <!-- Buttons Column -->
+    <ng-container matColumnDef="button-group">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Options </mat-header-cell>
+      <mat-cell  *matCellDef="let row">
+        <button mat-icon-button color="primary" matTooltip="Basic" aria-label="Example icon-button with a heart icon" routerLink="/admin/articles/edit/{{row.url}}">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" matTooltip="Basic" aria-label="Example icon-button with a heart icon" (click)="deleteArticle(row.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">
+    </mat-row>
+
+  </mat-table><!--
+  [itemsPerPage]="pagination.itemsPerPage"
+  [totalItems]="pagination.totalItems"
+  [(ngModel)]="pagination.currentPage"-->
+  <mat-paginator #paginator
+  (page)="handlePageEvent($event)"
+  [length]="length"
+  [pageSize]="pageSize"
+  [pageIndex]="pageIndex"
+  [pageSizeOptions]="pageSizeOptions"
+  aria-label="Select page">
+  </mat-paginator>
+</div>
+
+
+
+

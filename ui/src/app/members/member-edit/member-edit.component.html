@@ -1,0 +1,40 @@
+<!--<div *ngIf="member">
+  <h1>{{member.userName}}</h1>
+  <ul>
+    <li>Member since: {{member.createdAt | date: 'dd MMM yyyy' }}</li>
+    <li>Last active: {{member.lastActive | timeago}}</li>
+  </ul>
+</div>
+
+<div class="col-4">
+  <h1>Your profile</h1>
+</div>
+<div class="full-width">
+  <div *ngIf="editForm.dirty" class="alert alert-info">
+    Information: You have made changes.
+  </div>
+</div>
+
+  <form #editForm="ngForm" id="editForm" (ngSubmit)="updateMember()">
+    <p>about</p>
+    <textarea *ngIf="member" [(ngModel)]="member.about" class="form-control" name="about" rows="10"></textarea>
+    <p>location</p>
+    <div class="form">
+      <label for="firstName">First name:</label>
+      <input *ngIf="member" [(ngModel)]="member.firstName" type="text" name="firstName" class="form-control mx-2">
+      <label for="lastName">Last name:</label>
+      <input *ngIf="member" [(ngModel)]="member.lastName" type="text" name="lastName" class="form-control mx-2">
+      <label for="city">City:</label>
+      <input *ngIf="member" [(ngModel)]="member.city" type="text" name="country" class="form-control mx-2">
+      <label for="country">Country:</label>
+      <input *ngIf="member" [(ngModel)]="member.country" type="text" name="country" class="form-control mx-2">
+      <label for="region">Region:</label>
+      <input *ngIf="member" [(ngModel)]="member.region" type="text" name="region" class="form-control mx-2">
+    </div>
+    <button form="editForm" type="submit">Save changes</button>
+  </form>
+
+  <div>
+    <app-photo-editor [member]="member"></app-photo-editor>
+  </div>-->
+

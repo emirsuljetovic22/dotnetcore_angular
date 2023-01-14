@@ -1,0 +1,19 @@
+h1 {
+  text-align: center;
+}
+
+.card {
+  max-width: 400px;
+}
+
+.header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+.news-grid-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+}

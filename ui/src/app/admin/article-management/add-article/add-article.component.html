@@ -1,0 +1,81 @@
+<div class="editArticleContainer mat-elevation-z4" [formGroup]="addArticleForm">
+  <h2>Add article</h2>
+
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input matInput
+      formControlName="title"
+      >
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>URL</mat-label>
+      <input matInput
+      formControlName="url"
+      >
+    </mat-form-field>
+
+    <div class="htmlEditor">
+      Content
+      <angular-editor formControlName="content" [config]="editorConfiguration"></angular-editor>
+    </div>
+
+    <mat-form-field>
+      <mat-label>Short description</mat-label>
+      <input matInput
+      formControlName="shortDescription"
+      >
+    </mat-form-field>
+
+    <div class="file-upload">
+      <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
+      <input
+      hidden
+      id="file"
+      type="file"
+      multiple="multiple"
+      #fileInput
+      class="form-control"
+      (change)="onFileChange($event)">
+    </div>
+    <div class="showImages" *ngIf="myFiles">
+      <div *ngFor="let file of myFiles">
+        <ul style="list-style: none">
+          <li>
+            {{file.name}}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <mat-form-field *ngIf="categories">
+      <mat-label>Select Category</mat-label>
+      <mat-select matInput
+        formControlName="category"
+        >
+        <div *ngFor="let category of categories">
+          <mat-option value="{{category.id}}">{{category.categoryName}}</mat-option>
+          <div *ngFor="let subCategory of category.subCategories">
+            <mat-option value="{{subCategory.id}}">- {{subCategory.categoryName}}</mat-option>
+            <div *ngFor="let subCategory2 of subCategory.subCategories">
+              <mat-option value="{{subCategory2.id}}">-- {{subCategory2.categoryName}}</mat-option>
+            </div>
+          </div>
+        </div>
+
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill" *ngIf="tags">
+      <mat-label>Tags</mat-label>
+      <mat-select matInput formControlName="tags" multiple>
+        <mat-option *ngFor="let tag of tags" [value]="tag.id">
+          {{tag.articleTagName}}
+        </mat-option>
+        <!--<mat-option *ngFor="let tag of article.tags" selected [value]="tag.articleTagName">{{tag.articleTagName}}</mat-option>-->
+        <!--<mat-option *ngFor="let tag of tags" selected [value]="tag.id">{{tag.articleTagName}}</mat-option>-->
+      </mat-select>
+    </mat-form-field>
+
+    <div>
+  </div>
+  <button mat-raised-button (click)="save()">Save</button>
+</div>

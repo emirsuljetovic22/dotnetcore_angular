@@ -1,0 +1,89 @@
+<!--<form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && register()" autocomplete="off">
+    <h2 class="text-center text-primary">Sign Up</h2>
+    <hr>
+
+    <app-text-input [formControl]='registerForm.controls["firstname"]' [label]='"First Name"'></app-text-input>
+
+    <app-text-input [formControl]='registerForm.controls["lastname"]' [label]='"Last Name"'></app-text-input>
+
+    <app-date-input [formControl]='registerForm.controls["dateofbirth"]' [label]='"Date of birth"' [maxDate]="maxDate"></app-date-input>
+
+
+    <app-text-input [formControl]='registerForm.controls["username"]' [label]='"Username"'></app-text-input>
+
+
+
+    <app-text-input [formControl]='registerForm.controls["password"]' [label]='"Password"' [type]='"password"'></app-text-input>
+
+    <app-text-input [formControl]='registerForm.controls["confirmPassword"]' [label]='"Confirm Password"' [type]='"password"'></app-text-input>
+
+    <div class="row" *ngIf="validationErrors.length > 0">
+      <ul class="text-danger">
+        <li *ngFor="let error of validationErrors">
+          {{error}}
+        </li>
+      </ul>
+    </div>
+    <div class="form-group text-center">
+      <button [disabled]="!registerForm.valid" class="btn btn-success mr-2" type="submit">Register</button>
+      <button class="btn btn-default mr-2" (click)="cancel()" type="button">Cancel</button>
+    </div>
+  </form>-->
+
+    <h2 mat-dialog-title>Registration form</h2>
+    <mat-dialog-content [formGroup]="registerForm">
+    <mat-form-field>
+      <mat-label>First name</mat-label>
+      <input matInput
+      formControlName="firstname"
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Last name</mat-label>
+      <input matInput
+      formControlName="lastname"
+      >
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Choose a date</mat-label>
+      <input
+      matInput
+      formControlName="dateofbirth"
+      [matDatepicker]="dateofbirth">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="dateofbirth"></mat-datepicker-toggle>
+      <mat-datepicker #dateofbirth></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Username</mat-label>
+      <input matInput
+      formControlName="username"
+      >
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your password</mat-label>
+      <input
+      matInput
+      formControlName="password"
+      [type]="hide ? 'password' : 'text'">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Confirm password</mat-label>
+      <input
+      formControlName="confirmPassword"
+      matInput
+      [type]="hide ? 'password' : 'text'">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+    <div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-raised-button (click)="register()">Register</button>
+    <button mat-raised-button [mat-dialog-close]="true">Cancel registration</button>
+  </mat-dialog-actions>

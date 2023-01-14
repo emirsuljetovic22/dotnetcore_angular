@@ -1,0 +1,17 @@
+<mat-tab-group mat-align-tabs="center" (selectedIndexChange)="tabChange($event)" animationDuration="0ms">
+  <mat-tab label="Articles">
+    <ng-template matTabContent>
+      <app-article-management></app-article-management>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Info">
+    <ng-template matTabContent>
+      <app-info-management></app-info-management>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Jobs">
+    <ng-template matTabContent>
+      <app-job-management></app-job-management>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>

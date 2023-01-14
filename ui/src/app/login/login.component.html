@@ -1,0 +1,31 @@
+<!--<form #loginForm="ngForm" class="d-flex ml-auto" (ngSubmit)="login()" autocomplete="off">
+  <input class="form-control" name="username" [(ngModel)]="model.username" type="text" placeholder="Username">
+  <input class="form-control ml-2" name="username" [(ngModel)]="model.password" type="password" placeholder="Password">
+  <button class="btn btn-success ml-2" type="submit">Login</button>
+</form>-->
+
+<h2 mat-dialog-title>Login</h2>
+<mat-dialog-content [formGroup]="loginForm">
+  <mat-form-field>
+    <mat-label>Username</mat-label>
+    <input matInput
+    formControlName="username"
+    >
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Enter your password</mat-label>
+    <input
+    matInput
+    formControlName="password"
+    [type]="hide ? 'password' : 'text'">
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-dialog-actions>
+    <button mat-raised-button (click)="login()" [mat-dialog-close]="true">Login</button>
+  </mat-dialog-actions>
+</mat-dialog-content>
+

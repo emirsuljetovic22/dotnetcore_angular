@@ -1,0 +1,85 @@
+<!--<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+  <div class="container">
+    <a class="navbar-brand" routerLink='/'>dia app</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLink='/home' routerLinkActive='active'>Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink='/news' routerLinkActive='active'>News</a>
+        </li>
+        <ng-container *ngIf="accountService.currentUser$ | async">
+          <li class="nav-item">
+            <a class="nav-link" routerLink='/members' routerLinkActive='active'>Members</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink='/lists' routerLinkActive='active'>Lists</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink='/messages' routerLinkActive='active'>Messages</a>
+          </li>
+          <li *appHasRole='["Admin", "Moderator"]' class="nav-item">
+            <a class="nav-link" routerLink='/admin' routerLinkActive='active'>Admin</a>
+          </li>
+        </ng-container>
+
+      </ul>
+      <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
+        <img class="img" src="{{user.photoUrl || './assets/user.png'}}" alt="{{user.username}}">
+        <a class="dropdown-toggle text-light ml-2" dropdownToggle>{{user.username | titlecase}}</a>
+        <div class="dropdown-menu" *dropdownMenu>
+          <a [routerLink]="['/member/edit']" routerLinkActive="router-link-active"  class="dropdown-item">Edit Profile</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" (click)="logout()">Logout</a>
+        </div>
+      </div>
+      <form *ngIf="(accountService.currentUser$ | async) === null" #loginForm="ngForm" class="d-flex ml-auto" (ngSubmit)="login()" autocomplete="off">
+        <input class="form-control" name="username" [(ngModel)]="model.username" type="text" placeholder="Username">
+        <input class="form-control ml-2" name="username" [(ngModel)]="model.password" type="password" placeholder="Password">
+        <button class="btn btn-success ml-2" type="submit">Login</button>
+      </form>
+  </div>
+</nav>-->
+<mat-toolbar color="primary">
+  <a mat-button routerLink="/news">
+    News
+  </a>
+  <a mat-button routerLink="/jobs">
+    Jobs
+  </a>
+  <a mat-button routerLink="/learning">
+    Learning
+  </a>
+  <div class="menu-item-group mla">
+    <a mat-button [mat-menu-trigger-for]="dropdown" *appHasRole='["Admin"]'>
+      Admin
+    </a>
+    <mat-menu #dropdown>
+      <button mat-menu-item routerLink="/admin">Admin panel</button>
+      <button mat-menu-item routerLink="/admin">Articles</button>
+      <button mat-menu-item routerLink="/admin">Info</button>
+      <button mat-menu-item routerLink="/admin">Jobs</button>
+    </mat-menu>
+    <a mat-button (click)="openRegisterForm()" *ngIf="(accountService.currentUser$ | async) === null">
+      <mat-icon fontIcon="person_add"></mat-icon>
+      Register
+    </a>
+    <a mat-button (click)="openLoginForm()" *ngIf="(accountService.currentUser$ | async) === null">
+      <mat-icon fontIcon="account_circle"></mat-icon>
+      Login
+    </a>
+    <a mat-button (click)="logout()" *ngIf="(accountService.currentUser$ | async)">
+      <mat-icon fontIcon="account_circle"></mat-icon>
+      Log out
+    </a>
+  </div>
+
+</mat-toolbar>
+
+<div class="loader-container" *ngIf="loaderService.isLoading | async">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+
